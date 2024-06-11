@@ -40,7 +40,7 @@ def main():
         if key_lst[pg.K_LEFT]: # 左キーを押したら
             l = 1
         if key_lst[pg.K_RIGHT]: # 右キーを押したら
-            r = 2
+            r = 3
         kkt_rct.move_ip((-1 +r -l, 0 -u +d)) # 背景画像と同じ速度で左に流れる
 
         screen.blit(kkt_img, kkt_rct)
