@@ -16,6 +16,7 @@ def main():
     tmr = 0
     kkt_rct = kkt_img.get_rect() # こうかとんrectの抽出
     kkt_rct.center = 300, 200
+
     while True:
         x = tmr%3200
         for event in pg.event.get():
@@ -26,17 +27,21 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bgf_img, [-x+4800, 0])
 
-        kkt_rct.move_ip((-1, 0)) # 背景画像と同じ速度で左に流れる
+        r = 0
+        l = 0
+        u = 0
+        d = 0
 
         key_lst = pg.key.get_pressed() # 全キーの押下状態を取得
         if key_lst[pg.K_UP]: # 上キーを押したら
-            kkt_rct.move_ip((0, -1))
+            u = 1
         if key_lst[pg.K_DOWN]: # 下キーを押したら
-            kkt_rct.move_ip((0, +1))
-        if key_lst[pg.K_LEFT]: # 右キーを押したら
-            kkt_rct.move_ip((-1, 0))
-        if key_lst[pg.K_RIGHT]: # 左キーを押したら
-            kkt_rct.move_ip((+2, 0))
+            d = 1
+        if key_lst[pg.K_LEFT]: # 左キーを押したら
+            l = 1
+        if key_lst[pg.K_RIGHT]: # 右キーを押したら
+            r = 2
+        kkt_rct.move_ip((-1 +r -l, 0 -u +d)) # 背景画像と同じ速度で左に流れる
 
         screen.blit(kkt_img, kkt_rct)
 
