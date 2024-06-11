@@ -13,11 +13,15 @@ def main():
     kkt_img = pg.image.load("fig/3.png")
     kkt_img = pg.transform.flip(kkt_img, True, False)
     tmr = 0
+    x = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0])
+        screen.blit(bg_img, [x, 0])
+        x -= 1
+        if x <= -800:
+            x = 0
         kkt_rct = kkt_img.get_rect() # こうかとんrectの抽出
         kkt_rct.center = 300, 200
         screen.blit(kkt_img, kkt_rct)
