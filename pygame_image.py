@@ -14,6 +14,8 @@ def main():
     kkt_img = pg.image.load("fig/3.png")
     kkt_img = pg.transform.flip(kkt_img, True, False)
     tmr = 0
+    kkt_rct = kkt_img.get_rect()
+    kkt_rct.center = 300, 200
     while True:
         x = tmr%3200
         for event in pg.event.get():
@@ -23,9 +25,22 @@ def main():
         screen.blit(bgf_img, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bgf_img, [-x+4800, 0])
-        kkt_rct = kkt_img.get_rect() # こうかとんrectの抽出
-        kkt_rct.center = 300, 200
+         # こうかとんrectの抽出
+        
+        
+
+        key_lst = pg.key.get_pressed() #全キーの押下状態を取得
+        if key_lst[pg.K_UP]:
+            kkt_rct.move_ip((0, -1))
+        if key_lst[pg.K_DOWN]:
+            kkt_rct.move_ip((0, +1))
+        if key_lst[pg.K_LEFT]:
+            kkt_rct.move_ip((-1, 0))
+        if key_lst[pg.K_RIGHT]:
+            kkt_rct.move_ip((+1, 0))
+
         screen.blit(kkt_img, kkt_rct)
+
         pg.display.update()
         tmr += 1        
         clock.tick(200)
